@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const PORT = 8000
 const bodyParser = require('body-parser')
 
 
@@ -23,9 +24,9 @@ app.get('/bainbridge', (request, response) => {
 
 // .catch(error => console.error(error))
 
-app.listen(3000, function() {
-    console.log('listening on 3000')
-})
-// app.listen(process.env.PORT || PORT, () => {
-//     console.log('Server is running.')
+// app.listen(, function() {
+//     console.log('listening on 3000')
 // })
+app.listen(process.env.PORT || PORT, () => {
+    console.log('Server is running.')
+})
