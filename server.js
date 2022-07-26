@@ -18,7 +18,7 @@ app.get('/', (request, response) => {
     
 })
 
-app.get('/bainbridge', (request, response) => {
+app.get('/bainbridge.html', (request, response) => {
     response.sendFile(__dirname + '/routesToDiffHomes/bainbridge.html')
 })
 
