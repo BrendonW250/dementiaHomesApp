@@ -21,7 +21,7 @@ app.get('/', (request, response) => {
 // When user clicks on this nursing
 // takes them to the page with homes info
 app.get('/bainbridge', (request, response) => {
-    response.sendFile(__dirname + '/routesToDiffHomes/bainbridge.html')
+    response.sendFile(__dirname + '/routesToDiffHomes/bainbridge')
 })
 
 app.get('/morningside.html', (request, response) => {
