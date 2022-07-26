@@ -18,8 +18,14 @@ app.get('/', (request, response) => {
     
 })
 
-app.get('/bainbridge.html', (request, response) => {
+// When user clicks on this nursing
+// takes them to the page with homes info
+app.get('/bainbridge', (request, response) => {
     response.sendFile(__dirname + '/routesToDiffHomes/bainbridge.html')
+})
+
+app.get('/morningside.html', (request, response) => {
+    response.sendFile(__dirname + '/routesToDiffHomes/morningside.html')
 })
 
 // .catch(error => console.error(error))
