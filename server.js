@@ -25,7 +25,7 @@ app.get('/api/homes/:bainbridge', (request, response) => {
     const id = request.params.id
     const home = nursingHomes.find(home => home.id === id)
 
-    response.sendFile(__dirname + '/bainbridge.html')
+    response.sendFile(__dirname + '/routesToDiffHomes/bainbridge.html')
 
 })
 
