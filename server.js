@@ -20,12 +20,12 @@ app.get('/', (request, response) => {
 
 // When user clicks on this nursing
 // takes them to the page with homes info
-app.get('/api/homes/:nameOfHome', (request, response) => {
-    // response.sendFile(__dirname + '/routesToDiffHomes/bainbridge.html')
-    const homeNames = request.params.nameOfHome
-    const home = nursingHomes.find(home => home.id === id)
+app.get('/api/bainbridge', (request, response) => {
+    response.sendFile(__dirname + '/displayOfHomes/bainbridge.html')
+    // const homeNames = request.params.nameOfHome
+    // const home = nursingHomes.find(home => home.id === id)
 
-    response.json(home)
+    // response.json(home)
 
 })
 
