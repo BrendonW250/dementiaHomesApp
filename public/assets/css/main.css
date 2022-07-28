@@ -2687,7 +2687,10 @@ input, select, textarea {
 
 				.tiles article > a h2 {
 					margin: 0;
+					/* text-align: center;
+					align-items: center; */
 				}
+				
 
 				.tiles article > a .content {
 					-moz-transition: max-height 0.5s ease, opacity 0.5s ease;
