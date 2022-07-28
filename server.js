@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 8000
 const bodyParser = require('body-parser')
-const bainbridge = require('./routesForHomes/bainbridge')
+// const bainbridge = require('./public/routesForHomes/bainbridge')
 
 
 
@@ -14,36 +14,49 @@ app.use(bodyParser.urlencoded({
 app.use(express.static('public'))
 
 // treating the nursing home html files like middleware
-// this is the importing of the router object from the js file
-app.use('/bainbridge', bainbridge)
-// use the bainbridge.js file to handle endpoints that start with /bainbridge
+// '/bainbridge is considered the base for that specific route 
+// similarly to how '/' is the base for the homepage then as you 
+// click on other components of the webpage you get different routes
+// app.use('/bainbridge', bainbridge)
 
-// routes
+
+//////////// routes for each nursing home ///////////
+
+// Route to let the server know to go to the website's homepage
 app.get('/', (request, response) => {
     response.sendFile(__dirname + '/index.html')
     
 })
 
-// When user clicks on this nursing
-// takes them to the page with homes info
-// app.get('', (request, response) => {
-//     response.sendFile(__dirname + '/displayOfHomes/bainbridge.html')
-    // const homeNames = request.params.nameOfHome
-    // const home = nursingHomes.find(home => home.id === id)
+// route and actions for bainbridge nursing home
+// Whenever the server receives this route, it brings up
+// the bainbridge nursing home page that will display the homes info
+app
+    .route('/bainbridge')
+    .get((request, response) => {
+        response.sendFile(__dirname + '/displayOfHomes/bainbridge.html')
+    })
 
-    // response.json(home)
+// tells the server whenever it sees the '/morningside' route
+// to display the morningside.html file 
+app
+    .route('/morningside')
+    .get((request, response) => {
+        response.sendFile(__dirname + '/displayOfHomes/morningside.html')
+    })
 
-//})
+// tells the server whenever it sees the '/eastchesterrehab' route
+// to display the eastchester rehab nursing home page
+app 
+    .route('/eastchesterrehab')
+    .get((request, response) => {
+        response.sendFile(__dirname + '/displayOfHomes/eastchesterRehab.html')
+    })
 
-app.get('/morningside', (request, response) => {
-    response.sendFile(__dirname + '/displayOfHomes/morningside.html')
-})
 
-// .catch(error => console.error(error))
+.catch(error => console.error(error))
 
-// app.listen(, function() {
-//     console.log('listening on 3000')
-// })
+// 
 app.listen(process.env.PORT || PORT, () => {
     console.log('Server is running.')
 })
