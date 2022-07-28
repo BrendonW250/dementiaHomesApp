@@ -54,7 +54,7 @@ app
     })
 
 
-.catch(error => console.error(error))
+// .catch(error => console.error(error))
 
 // 
 app.listen(process.env.PORT || PORT, () => {
