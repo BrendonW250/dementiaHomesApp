@@ -30,7 +30,7 @@ app.get('/', (request, response) => {
 app
     .route('/bainbridge')
     .get((request, response) => {
-        response.sendFile(__dirname + '/displayOfHomes/bainbridge.html')
+        response.sendFile(__dirname + '/displayOfHomes/bainbridge.html') 
     })
 
 // tells the server whenever it sees the '/morningside' route
