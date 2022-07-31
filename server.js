@@ -59,11 +59,28 @@ app
     })
 
 app
-    .route('/university')
+    .route('/university-nursing')
     .get((request, response) => {
         response.sendFile(__dirname + '/displayOfHomes/university.html')
     })
 
+app
+    .route('/stpatrickshome')
+    .get((request, response) => {
+        response.sendFile(__dirname + '/displayOfHomes/stPatrick.html')
+    })
+
+app
+    .route('/bronx-center')
+    .get((request, response) => {
+        response.sendFile(__dirname + '/displayOfHomes/bronxCenter.html')
+    })
+
+app
+    .route('/williamsbridge')
+    .get((request, response) => {
+        response.sendFile(__dirname + '/displayOfHomes/williamsBridge.html')
+    })
 
 // .catch(error => console.error(error))
 
