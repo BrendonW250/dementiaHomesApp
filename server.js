@@ -75,54 +75,54 @@ MongoClient.connect(process.env.DB_STRING, { useUnifiedTopology: true })
 
 
 
-// tells the server whenever it sees the '/morningside' route
-// to display the morningside.html file 
-// Morningside Nursing Home page route
-app
-    .route('/morningside')
-    .get((request, response) => {
-        response.sendFile(__dirname + '/displayOfHomes/morningside.html')
-    })
+// // tells the server whenever it sees the '/morningside' route
+// // to display the morningside.html file 
+// // Morningside Nursing Home page route
+// app
+//     .route('/morningside')
+//     .get((request, response) => {
+//         response.sendFile(__dirname + '/displayOfHomes/morningside.html')
+//     })
 
-// Kings Harbor Nursing Home page route
-app
-    .route('/kings-harbor')
-    .get((request, response) => {
-        response.sendFile(__dirname + '/displayOfHomes/kingsHarbor.html')
-    })
+// // Kings Harbor Nursing Home page route
+// app
+//     .route('/kings-harbor')
+//     .get((request, response) => {
+//         response.sendFile(__dirname + '/displayOfHomes/kingsHarbor.html')
+//     })
 
-// tells the server whenever it sees the '/eastchesterrehab' route
-// to display the eastchester rehab nursing home page
-// Eastchester Nursing Home page route
-app 
-    .route('/eastchester-rehab')
-    .get((request, response) => {
-        response.sendFile(__dirname + '/displayOfHomes/eastchesterRehab.html')
-    })
+// // tells the server whenever it sees the '/eastchesterrehab' route
+// // to display the eastchester rehab nursing home page
+// // Eastchester Nursing Home page route
+// app 
+//     .route('/eastchester-rehab')
+//     .get((request, response) => {
+//         response.sendFile(__dirname + '/displayOfHomes/eastchesterRehab.html')
+//     })
 
-app
-    .route('/university-nursing')
-    .get((request, response) => {
-        response.sendFile(__dirname + '/displayOfHomes/university.html')
-    })
+// app
+//     .route('/university-nursing')
+//     .get((request, response) => {
+//         response.sendFile(__dirname + '/displayOfHomes/university.html')
+//     })
 
-app
-    .route('/stpatrickshome')
-    .get((request, response) => {
-        response.sendFile(__dirname + '/displayOfHomes/stPatrick.html')
-    })
+// app
+//     .route('/stpatrickshome')
+//     .get((request, response) => {
+//         response.sendFile(__dirname + '/displayOfHomes/stPatrick.html')
+//     })
 
-app
-    .route('/bronx-center')
-    .get((request, response) => {
-        response.sendFile(__dirname + '/displayOfHomes/bronxCenter.html')
-    })
+// app
+//     .route('/bronx-center')
+//     .get((request, response) => {
+//         response.sendFile(__dirname + '/displayOfHomes/bronxCenter.html')
+//     })
 
-app
-    .route('/williamsbridge')
-    .get((request, response) => {
-        response.sendFile(__dirname + '/displayOfHomes/williamsBridge.html')
-    })
+// app
+//     .route('/williamsbridge')
+//     .get((request, response) => {
+//         response.sendFile(__dirname + '/displayOfHomes/williamsBridge.html')
+//     })
 
 // .catch(error => console.error(error))
 
