@@ -18,6 +18,8 @@ async function getFetch(){
 
         // displaying the name of the home from the api
         document.querySelector('h2').innerHTML = 'Name ' + data.name
+
+        
     }catch(error){
         console.log(error)
     }
