@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 8000
 const bodyParser = require('body-parser')
-const MongoClient = require('mongodb')
+const MongoClient = require('mongodb').MongoClient
 require('dotenv').config()
 // const bainbridge = require('./public/routesForHomes/bainbridge')
 
@@ -49,12 +49,12 @@ MongoClient.connect(process.env.DB_STRING, { useUnifiedTopology: true })
     // the bainbridge nursing home page that will display the homes info
     // Bainbridge Nursing Home page route
     app
-        .route('/bainbridge')
+        .route('/bainbridge/:firstHome')
         .get((request, response) => {
 
             response.sendFile(__dirname + '/displayOfHomes/bainbridge.html') 
 
-            const bain = request.params.bainbridge
+            const bain = request.params.firstHome
                 homeCollection.find({name: bain}).toArray()
                 .then(results => {
                     console.log(results)

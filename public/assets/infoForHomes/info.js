@@ -4,7 +4,7 @@
 
 // listens for a 'click' on any <a> in the index.html file 
 // Once clicked the getFetch file will trigger
-document.querySelector('a').addEventListener('click', getFetch)
+document.querySelector('article').addEventListener('click', getFetch)
 
 async function getFetch(){
     const homeName = document.querySelector('a').value 
@@ -17,9 +17,9 @@ async function getFetch(){
         console.log(data)
 
         // displaying the name of the home from the api
-        document.querySelector('h2').innerHTML = 'Name ' + data.name
+        // document.querySelector('h2').innerHTML = 'Name ' + data.name
 
-        
+
     }catch(error){
         console.log(error)
     }
