@@ -4,10 +4,12 @@ const PORT = 8000
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 require('dotenv').config()
+const ejs = require('ejs')
 // const bainbridge = require('./public/routesForHomes/bainbridge')
 
 
-
+// allowing me to connect to the ejs file
+app.set('view engine', 'ejs')
 // Middleware
 app.use(bodyParser.urlencoded({
     extended: true
@@ -40,7 +42,8 @@ MongoClient.connect(process.env.DB_STRING, { useUnifiedTopology: true })
 
 //////////////////////////// routes for each nursing home /////////////////////////////////
     app.get('/', (request, response) => {
-        response.sendFile(__dirname + '/index.html')
+        // response.sendFile(__dirname + '/index.html')
+        response.render('index')
     
     })
 
@@ -49,20 +52,35 @@ MongoClient.connect(process.env.DB_STRING, { useUnifiedTopology: true })
     // the bainbridge nursing home page that will display the homes info
     // Bainbridge Nursing Home page route
     app
-        .route('/bainbridge/:firstHome')
+        .route('/bainbridge')
         .get((request, response) => {
+            const work = homeCollection.find()
+            response.render('bainbridge', { work })
+            
 
-            response.sendFile(__dirname + '/displayOfHomes/bainbridge.html') 
+            // response.sendFile(__dirname + '/displayOfHomes/bainbridge.html') 
 
-            const bain = request.params.firstHome
-                homeCollection.find({name: bain}).toArray()
-                .then(results => {
-                    console.log(results)
-                    response.json(results[0])
-                })
-                .catch(error => console.error(error))
+            // const bain = request.params.firstHome
+            //     homeCollection.find({name: bain}).toArray()
+            //     .then(results => {
+            //         console.log(results)
+            //         response.json(results[0])
+            //     })
+            //     .catch(error => console.error(error))
             // response.sendFile(__dirname + '/displayOfHomes/bainbridge.html') 
         })
+
+    // app
+    //     .route('/bainbridge/:homeName')
+    //     .get((request, response) => {
+    //         const homeNames = request.params.homeName
+    //             homeCollection.find({name: homeNames}).toArray()
+    //             .then(results => {
+    //                 console.log(results)
+    //                 response.render(results[0])
+    //             })
+    //             .catch(error => console.error(error))
+    //     })
 
 
 
