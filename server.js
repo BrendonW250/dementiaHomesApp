@@ -9,14 +9,21 @@
 
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const PORT = 8000
 const bodyParser = require('body-parser')
 require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient
 
 
+
 // allowing me to connect to the ejs file
 app.set('view engine', 'ejs')
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(cors())
 
 
 // connect to mongo
@@ -28,37 +35,48 @@ MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
         const homeCollection = db.collection('home-info')
 
 
-        // Middleware
-        app.use(bodyParser.urlencoded({
-            extended: true
-        }))
-        // Allows for the server to read front-end code (the css)
-        app.use(express.static('public'))
+            // now we set up routes for the server w/ express
+            app
+               .route('/')
+               .get((request, response) => {
+                   response.render('index')
+               })
+   
+           // for bainbridge nursing home page
+           app 
+               .route('/api/:bainbridge')
+               .get((request, response) => {
+                   response.render('bainbridge')
+               })
+        //    app 
+        //        .route('/api/:nameOfHome')
+        //        .get((request, response) => {
+        //            const canThisWork = request.params.nameOfHome
+        //            homeCollection.find({homeTitle: canThisWork})
+        //            .then(results => {
+        //                console.log(results)
+        //                response.json(results)
+        //            })
+        //            .catch(error => console.error(error))
+        //        })
 
-
-        // now we set up routes for the server w/ express
-        app
-            .route('/')
-            .get((request, response) => {
-                response.render('index')
-            })
-
-        // for bainbridge nursing home page
-        app 
-            .route('/bainbridge')
-            .get((request, response) => {
-                const homeTitles = request.params.bainbridge
-                    homeCollection.find({work: homeTitles}).toArray()
-                    .then(results => {
-                        console.log(results)
-                        response.render('bainbridge', {
-                            results
-                        })
-                    })
-                    .catch(error => console.error(error))
-            })
+        // app 
+        //     .route('/bainbridge')
+        //     .get((request, response) => {
+        //         const homeTitles = request.params.bainbridge
+        //             homeCollection.find({work: homeTitles}).toArray()
+        //             .then(results => {
+        //                 console.log(results)
+        //                 response.render('bainbridge', {
+        //                     results
+        //                 })
+        //             })
+        //             .catch(error => console.error(error))
+        //     })
 
     })
+
+     
 
 
 
