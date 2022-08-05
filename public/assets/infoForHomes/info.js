@@ -5,25 +5,27 @@
 // listens for a 'click' on any <a> in the index.html file 
 // Once clicked the getFetch file will trigger
 // document.querySelector('article').addEventListener('click', getFetch)
-
-// async function getFetch(){
-//     const homeName = document.querySelector('a').value 
-
-//     try{
-
-//         const response = await fetch(`https://bronx-dementia-homes.herokuapp.com/${homeName}`)
-//         const data = await response.json()
-
-//         console.log(data)
-
-//             document.querySelector('h2').innerHTML = 'Home: ' + data.name
-
-//         // displaying the name of the home from the api
-//         // document.querySelector('h2').innerHTML = 'Name ' + data.name
+const homeName = document.querySelector('.call-to-bainbridge').addEventListener('click', getFetch)
 
 
-//     }catch(error){
-//         console.log(error)
-//     }
+async function getFetch(){
+    // const homeName = document.querySelector('call-to-bainbridge').value 
+
+    try{
+
+        const response = await fetch(`https://bronx-dementia-homes.herokuapp.com/${homeName}`)
+        const data = await response.json()
+
+        console.log(data)
+
+            document.querySelector('h2').innerHTML = 'Home: ' + data.name
+
+        // displaying the name of the home from the api
+        // document.querySelector('h2').innerHTML = 'Name ' + data.name
+
+
+    }catch(error){
+        console.log(error)
+    }
     
-// }
+}

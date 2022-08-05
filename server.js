@@ -1,53 +1,95 @@
+// const mongoose = require('mongoose')
+// const ejs = require('ejs')
+// const InfoOnHomes = require('./models/basicInfo');
+// const basicInfo = require('./models/basicInfo')
+// const { home } = require('nodemon/lib/utils')
+
+// const MongoClient = require('mongodb').MongoClient
+// const bainbridge = require('./public/routesForHomes/bainbridge')
+
 const express = require('express')
 const app = express()
 const PORT = 8000
 const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
 require('dotenv').config()
-// const ejs = require('ejs')
-const InfoOnHomes = require('./models/basicInfo');
-
-// const MongoClient = require('mongodb').MongoClient
-// const bainbridge = require('./public/routesForHomes/bainbridge')
+const MongoClient = require('mongodb').MongoClient
 
 
 // allowing me to connect to the ejs file
 app.set('view engine', 'ejs')
 
-// Middleware
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
-// Allows for the server to read front-end code (the css)
-app.use(express.static('public'))
 
 // connect to mongo
-mongoose.connect(
-    process.env.DB_STRING,
-    { useNewUrlParser: true },
-    () => {console.log('Connected to db!');}
-)
+MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
+    // () => {console.log('Connected to db!');}
+    .then(client => {
+        console.log('Connected to database')
+        const db = client.db('dementiaHomesBx')
+        const homeCollection = db.collection('home-info')
+
+
+        // Middleware
+        app.use(bodyParser.urlencoded({
+            extended: true
+        }))
+        // Allows for the server to read front-end code (the css)
+        app.use(express.static('public'))
+
+
+        // now we set up routes for the server w/ express
+        app
+            .route('/')
+            .get((request, response) => {
+                response.render('index')
+            })
+
+        // for bainbridge nursing home page
+        app 
+            .route('/bainbridge')
+            .get((request, response) => {
+                const homeTitles = request.params.bainbridge
+                    homeCollection.find({work: homeTitles}).toArray()
+                    .then(results => {
+                        console.log(results)
+                        response.render('bainbridge', {
+                            results
+                        })
+                    })
+                    .catch(error => console.error(error))
+            })
+
+    })
+
 
 
 // now we set up routes for the server w/ express
-app
-    .route('/')
-    .get((request, response) => {
-        response.render('index')
-    })
+// app
+//     .route('/')
+//     .get((request, response) => {
+//         response.render('index')
+//     })
 
-app
-    .route('/bainbridge')
-    .get((request, response) => {
-        try {
-            InfoOnHomes.find({}, (err, places) => {
-                response.render('bainbridge.ejs', { basicInfo: places });
-            });
-        } catch (err){
-            if (err) return response.status(500).send(err)
-        }
+// app
+//     .route('/bainbridge')
+//     .get((request, response) => {
+
+//         const canThisWork = request.params.bainbridge
+//             .find({homeTitle: canThisWork}).toArray()
+//             .then(results => {
+//                 console.log(results)
+//                 response.json(results[0])
+//             })
+//             .catch(error => console.error(error))
+//         // try {
+//         //     InfoOnHomes.find().toArray()
+//         //     // InfoOnHomes.find({}, (err, places) => {
+//         //     //     response.render('bainbridge.ejs', { basicInfo: places });
+//         //     });
+//         // } catch (err){
+//         //     if (err) return response.status(500).send(err)
+//         // }
         
-    }) 
+//     }) 
 
 
 
