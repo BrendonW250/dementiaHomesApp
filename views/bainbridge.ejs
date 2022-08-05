@@ -9,10 +9,15 @@
 <body>
     <h1>This is Info on Bainbridge</h1>
 
-    <h2> </h2>
+    <% for (let i=0; i<homes.length; i++){%>
+        <% if (homes[i].name == 'Bainbridge Nursing & Rehabilitation Center'){%>
+            <h2><%= homes[i].name %></h2>
+        <%}%>
+    <%}%>
+    
 
     <img src="" alt="photo-of-home">
 
-    <script src="assets/infoForHomes/info.js"></script>
+    <!--<script src="assets/infoForHomes/info.js"></script> --> 
 </body>
 </html>

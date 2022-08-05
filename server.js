@@ -32,21 +32,25 @@ MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
     .then(client => {
         console.log('Connected to database')
         const db = client.db('dementiaHomesBx')
-        const homeCollection = db.collection('home-info')
+        const homeCollection = db.collection('homes-info')
 
 
             // now we set up routes for the server w/ express
             app
                .route('/')
                .get((request, response) => {
-                   response.render('index')
+                   response.sendFile(__dirname + '/index.html')
                })
    
            // for bainbridge nursing home page
            app 
-               .route('/api/:bainbridge')
+               .route('/bainbridge')
                .get((request, response) => {
-                   response.render('bainbridge')
+                   homeCollection.find().toArray()
+                        .then(results => {
+                            response.render('bainbridge.ejs', {homes: results})
+                        })
+                        .catch(error => console.error(error))
                })
         //    app 
         //        .route('/api/:nameOfHome')
