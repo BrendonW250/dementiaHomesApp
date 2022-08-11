@@ -9,15 +9,23 @@
 <body>
     <h1>This is Info on Bainbridge</h1>
 
+    <!-- Displaying the name of the home for this specific page -->
     <% for (let i=0; i<homes.length; i++){%>
         <% if (homes[i].name == 'Bainbridge Nursing & Rehabilitation Center'){%>
-            <h2><%= homes[i].name %></h2>
+            <h2 class="bain-heading"><%= homes[i].name %></h2>
+        <%}%>
+    <%}%>
+
+    <!-- Displaying the bainbridge home address -->
+    <% for (let i=0; i<homes.length; i++){%
+        <% if (homes[i].address == '3518 Bainbridge Ave, Bronx, NY 10467'){%>
+            <h2><%= homes[i].address %></h2>
         <%}%>
     <%}%>
     
 
     <img src="" alt="photo-of-home">
 
-    <!--<script src="assets/infoForHomes/info.js"></script> --> 
+    
 </body>
 </html>
