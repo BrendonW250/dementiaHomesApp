@@ -52,17 +52,17 @@ MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
                         })
                         .catch(error => console.error(error))
                })
-        //    app 
-        //        .route('/api/:nameOfHome')
-        //        .get((request, response) => {
-        //            const canThisWork = request.params.nameOfHome
-        //            homeCollection.find({homeTitle: canThisWork})
-        //            .then(results => {
-        //                console.log(results)
-        //                response.json(results)
-        //            })
-        //            .catch(error => console.error(error))
-        //        })
+
+            // to get the data from the db to be displayed on the morningside ejs page
+           app 
+               .route('/morningside')
+               .get((request, response) => {
+                   homeCollection.find().toArray()
+                    .then(results => {
+                        response.render('morningside.ejs', {homes: results})
+                    })
+                    .catch(error => console.error(error))
+               })
 
         // app 
         //     .route('/bainbridge')
