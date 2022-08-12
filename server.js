@@ -64,6 +64,16 @@ MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
                     .catch(error => console.error(error))
                })
 
+            app
+               .route('/bethAbraham')
+               .get((request, response) => {
+                   homeCollection.find().toArray()
+                    .then(results => {
+                        response.render('bethAbraham.ejs', {homes: results})
+                    })
+                    .catch(error => console.error(error))
+               })
+
         // app 
         //     .route('/bainbridge')
         //     .get((request, response) => {
