@@ -64,12 +64,53 @@ MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
                     .catch(error => console.error(error))
                })
 
+            //    allows me to get the data from the beth abraham document to be displayed on the ejs page
             app
                .route('/bethAbraham')
                .get((request, response) => {
                    homeCollection.find().toArray()
                     .then(results => {
                         response.render('bethAbraham.ejs', {homes: results})
+                    })
+                    .catch(error => console.error(error))
+               })
+
+            app
+               .route('/kings-harbor')
+               .get((request, response) => {
+                   homeCollection.find().toArray()
+                    .then(results => {
+                        response.render('kingsHarbor.ejs', {homes: results})
+                    })
+                    .catch(error => console.error(error))
+               })
+
+            app
+               .route('/eastchester-rehab')
+               .get((request, response) => {
+                   homeCollection.find().toArray()
+                    .then(results => {
+                        response.render('eastchesterRehab.ejs', {homes: results})
+                    })
+                    .catch(error => console.error(error))
+               })
+
+            app
+               .route('/university-nursing')
+               .get((request, response) => {
+                   homeCollection.find().toArray()
+                    .then(results => {
+                        response.render('kingsHarbor.ejs', {homes: results})
+                    })
+                    .catch(error => console.error(error))
+               })
+
+            app
+               .route('/stpatrickshome')
+               .get((request, response) => {
+                   homeCollection.find().toArray()
+                    .then(results => {
+                        response.render('stPatrick.ejs', {homes: results})
                     })
                     .catch(error => console.error(error))
                })
