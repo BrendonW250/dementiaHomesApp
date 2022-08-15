@@ -149,7 +149,7 @@ MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
                })
 
             app
-               .route('/husdonpointe')
+               .route('/hudsonpointe')
                .get((request, response) => {
                    homeCollection.find().toArray()
                     .then(results => {
