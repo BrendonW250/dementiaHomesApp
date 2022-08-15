@@ -147,6 +147,16 @@ MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
                     })
                     .catch(error => console.error(error))
                })
+
+            app
+               .route('/husdonpointe')
+               .get((request, response) => {
+                   homeCollection.find().toArray()
+                    .then(results => {
+                        response.render('hudsonPointe.ejs', {homes: results})
+                    })
+                    .catch(error => console.error(error))
+               })
         // app 
         //     .route('/bainbridge')
         //     .get((request, response) => {
