@@ -17,7 +17,7 @@ const MongoClient = require('mongodb').MongoClient
 const { home } = require('nodemon/lib/utils')
 
 
-
+// middlewares
 // allowing me to connect to the ejs file
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
 
 
-// connect to mongo
+// connecting to my database
 MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
     // () => {console.log('Connected to db!');}
     .then(client => {
