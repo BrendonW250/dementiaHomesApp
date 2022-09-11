@@ -15,6 +15,7 @@ const bodyParser = require('body-parser')
 require('dotenv').config()
 const MongoClient = require('mongodb').MongoClient
 const { home } = require('nodemon/lib/utils')
+const { request } = require('express')
 
 
 // middlewares
@@ -33,7 +34,26 @@ MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
     .then(client => {
         console.log('Connected to database')
         const db = client.db('dementiaHomesBx')
+        const userCollection = db.collection('users')
         const homeCollection = db.collection('homes-info')
+
+            
+            // app
+            //     .route('/signup')
+            //     .get((request, response) => {
+            //         response.render('signup.ejs')
+            //     })
+
+            //     .post((request,response) => {
+            //         db.collection('users').insertOne({email: request.body.email, 
+            //         password: request.body.password})
+
+            //         .then(result => {
+            //             console.log('User added')
+            //             response.redirect('/')
+            //         })
+            //     )}
+            
 
 
             // now we set up routes for the server w/ express
@@ -42,6 +62,21 @@ MongoClient.connect(process.env.DB_STRING, { useNewUrlParser: true })
                .get((request, response) => {
                    response.sendFile(__dirname + '/index.html')
                })
+
+            // creating route for user to be directed to login page upon typing in the website
+            app.get('/signup', (request,response) => {
+                response.render('signup.ejs')
+            })
+
+            app.post('/signup', (request,response) => {
+                db.collection('users').insertOne({email: request.body.email, 
+                    password: request.body.password})
+        
+                        .then(result => {
+                            console.log('User added')
+                            response.redirect('/')
+                        })
+            })
    
            // for bainbridge nursing home page
            app 
